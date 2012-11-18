@@ -1,37 +1,45 @@
 # MGTimelineManager
-- Visually unique and customizable TabBarController.
+- MGTimelineManager is a simple twitter timeline manager for iOS.
 
-MGTabBarController uses SVSegmentedControl for the actual TabBar view.  For customizing the TabBar view itself (fairly easy btw), check out SVSegmentedControl source code here: https://github.com/samvermette/
+MGTimelineManager uses AFNetworking and SBJson for parsing and fetching timelines. Tweets are stored in MGTweetItems.
 
 ## Setup
-- Add the "MGTabBarController" folder to your project
+- Add the "MGTimelineManager" folder to your project (The nest MGTimelineManager folder)
+- Add SystemConfiguration.framework to your project
 
 ## Example Usage
 
 Check the demo for full code and visual example
 
 ```objc
-#import "MGTabBarController.h"
+#import "MGTimelineManager.h"
 
-//init tabBarController
-self.tabBarController = [[MGTabBarController alloc] initWithTabNames:[NSArray arrayWithObjects:@"View Controller1", @"View Controller 2", nil]];
-
-self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
+//twitter ids are more stable for use
+//head to http://www.idfromuser.com/ to lookup twitter IDs!
+MGTimelineManager *timelineManager = [[MGTimelineManager alloc] initWithTwitterIDs:[NSArray arrayWithObjects:@"63400533", @"486599947", nil]];
+timelineManager = self;
+[timelineManager fetchTimelines];
 ```
 
-You can also customize the look and feel
+Here is an example usage of MGTimelineManagerDelegate Methods
 ```objc
-//customizing
-//for more customizing check out SVSegmentedControl.h
-self.tabBarController.segmentedControl.crossFadeLabelsOnDrag = YES;
-self.tabBarController.segmentedControl.font = [UIFont fontWithName:@"Helvetica" size:16];
-self.tabBarController.segmentedControl.titleEdgeInsets = UIEdgeInsetsMake(0, 14, 0, 14);
-	
-self.tabBarController.segmentedControl.thumb.tintColor = [UIColor colorWithRed:.5 green:0 blue:0 alpha:1];
-self.tabBarController.segmentedControl.thumb.textColor = [UIColor whiteColor];
+#pragma mark - MGTimelineManagerDelegate methods
+- (void) timelineManagerLoadedNewTimeline:(MGTimelineManager *)timelineManager
+{
+    [tableView reloadData];
+}
+
+- (void) timelineManagerConnectionError:(MGTimelineManager *)timelineManager
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Could not connect to twitter" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void) timelineManagerErrorLoadingTimelineForTwitterID:(NSString *)twitterID
+{
+    NSString *message = [NSString stringWithFormat:@"Could not load twitter id - %@",twitterID];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:message delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+    [alert show];
+}
 ```
-
-## Example Screenshots
-![ScreenShot 1](http://cloud.github.com/downloads/mglagola/MGTabBarController/1.PNG)
-
-![ScreenShot 2](http://cloud.github.com/downloads/mglagola/MGTabBarController/2.PNG)
+Checkout the demo project for a full example.
