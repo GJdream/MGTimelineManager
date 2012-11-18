@@ -14,7 +14,7 @@ Check the demo for full code and visual example
 ```objc
 #import "MGTimelineManager.h"
 
-//twitter ids are more stable for use
+//twitter ids are more stable b/c twitter usernames can change, ids cannot
 //head to http://www.idfromuser.com/ to lookup twitter IDs!
 MGTimelineManager *timelineManager = [[MGTimelineManager alloc] initWithTwitterIDs:[NSArray arrayWithObjects:@"63400533", @"486599947", nil]];
 timelineManager = self;
