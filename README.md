@@ -24,9 +24,16 @@ timelineManager = self;
 Here is an example usage of MGTimelineManagerDelegate Methods
 ```objc
 #pragma mark - MGTimelineManagerDelegate methods
-- (void) timelineManagerLoadedNewTimeline:(MGTimelineManager *)timelineManager
+- (void) timelineManagerLoadedNewTimelines:(NSDictionary *)timelines
 {
     [tableView reloadData];
+}
+
+//timeline will be nil if no new tweets were found
+- (void) timelineManagerLoadedNewTimeline:(NSArray *)timeline forTwitterID:(NSString *)twitterID
+{
+    
+    NSLog(@"Timeline loaded for id - %@",twitterID);
 }
 
 - (void) timelineManagerConnectionError:(MGTimelineManager *)timelineManager

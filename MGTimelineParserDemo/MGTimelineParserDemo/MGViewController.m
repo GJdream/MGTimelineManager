@@ -66,6 +66,13 @@
     [tableView reloadData];
 }
 
+//timeline will be nil if no new tweets were found
+- (void) timelineManagerLoadedNewTimeline:(NSArray *)timeline forTwitterID:(NSString *)twitterID
+{
+    
+    NSLog(@"Timeline loaded for id - %@",twitterID);
+}
+
 - (void) timelineManagerConnectionError:(MGTimelineManager *)timelineManager
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Could not connect to twitter" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];

@@ -13,16 +13,16 @@
 
 @protocol MGTimelineManagerDelegate <NSObject>
 @optional
-//sends individual timelines that were just loaded
+//sends individual timelines that were JUST LOADED --- BRAND NEW tweets only
 //"timelines" are full of MGTweetItems
 //will send nil if no new timeline data
-- (void) timelineManagerLoadedNewTimeline:(NSArray*)timeline;
+- (void) timelineManagerLoadedNewTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID;
 
 //sends a dictionary w/ timelines linked by their twitter ids
 //individual timelines in the timelines dictionary are full of MGTweetItems
 - (void) timelineManagerLoadedNewTimelines:(NSDictionary*)timelines; 
 
-//error
+//errors
 - (void) timelineManagerConnectionError:(MGTimelineManager*)timelineManager;
 - (void) timelineManagerErrorLoadingTimelineForTwitterID:(NSString*)twitterID;
 @end

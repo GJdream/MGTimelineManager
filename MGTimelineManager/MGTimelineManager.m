@@ -55,11 +55,11 @@
     [self.tweets sortUsingDescriptors:sortByDate];
     
     //send new, sorted timeline to delegate
-    if ([self.delegate respondsToSelector:@selector(timelineManagerLoadedNewTimeline:)]) {
+    if ([self.delegate respondsToSelector:@selector(timelineManagerLoadedNewTimeline:forTwitterID:)]) {
         if (newTweets.count > 0) //checks for new tweets
-            [self.delegate timelineManagerLoadedNewTimeline:newTweets];
+            [self.delegate timelineManagerLoadedNewTimeline:newTweets forTwitterID:twitterID];
         else //no new tweets - send nil
-            [self.delegate timelineManagerLoadedNewTimeline:nil];
+            [self.delegate timelineManagerLoadedNewTimeline:nil forTwitterID:twitterID];
     }
     
     //checks to see if all feeds have been loaded
