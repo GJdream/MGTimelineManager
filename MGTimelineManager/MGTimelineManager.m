@@ -11,7 +11,7 @@
 
 @implementation MGTimelineManager
 
-@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate;
+@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, recentlyFetchedTweets = _recentlyFetchedTweets;
 
 - (void)sortTweetsWithNewTimeline:(NSArray*)newTimeline
 {
@@ -20,8 +20,15 @@
         MGTweetItem *tweet = [[MGTweetItem alloc] initWithTweetData:tweetData];
         [newTweets addObject:tweet];
     }
+    
     [self.tweets addObjectsFromArray:newTweets];
-    [self.tweets sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]]];
+    self.recentlyFetchedTweets = [[NSMutableArray alloc] initWithArray:newTweets];
+    
+    //sorts by date
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
+    [self.tweets sortUsingDescriptors:sortDescriptors];
+    [self.recentlyFetchedTweets sortUsingDescriptors:sortDescriptors];
+
     [self.delegate timelineManagerLoadedNewTimeline:self];
 }
 

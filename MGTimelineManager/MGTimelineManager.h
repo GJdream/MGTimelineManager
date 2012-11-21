@@ -29,6 +29,8 @@
 //stores all tweets fetched
 @property (nonatomic) NSMutableArray *tweets;
 
+//stores the most recetn fetched tweets
+@property (nonatomic) NSMutableArray *recentlyFetchedTweets;
 
 @property (nonatomic) id <MGTimelineManagerDelegate> delegate;
 
