@@ -45,6 +45,7 @@
 		4D6441A4165989C400E17540 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644180165989C400E17540 /* SBJsonTokeniser.m */; };
 		4D6441A5165989C400E17540 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644182165989C400E17540 /* SBJsonUTF8Stream.m */; };
 		4D6441A6165989C400E17540 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644184165989C400E17540 /* SBJsonWriter.m */; };
+		4DFD996A165C9883002CC155 /* NSArray+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD9969165C9883002CC155 /* NSArray+Search.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,8 @@
 		4D644182165989C400E17540 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		4D644183165989C400E17540 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4D644184165989C400E17540 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		4DFD9968165C9883002CC155 /* NSArray+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Search.h"; sourceTree = "<group>"; };
+		4DFD9969165C9883002CC155 /* NSArray+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Search.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,8 @@
 		4D644143165989C400E17540 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4DFD9968165C9883002CC155 /* NSArray+Search.h */,
+				4DFD9969165C9883002CC155 /* NSArray+Search.m */,
 				4D644144165989C400E17540 /* AFJSONRequestOperation+Twitter.h */,
 				4D644145165989C400E17540 /* AFJSONRequestOperation+Twitter.m */,
 			);
@@ -406,6 +411,7 @@
 				4D6441A4165989C400E17540 /* SBJsonTokeniser.m in Sources */,
 				4D6441A5165989C400E17540 /* SBJsonUTF8Stream.m in Sources */,
 				4D6441A6165989C400E17540 /* SBJsonWriter.m in Sources */,
+				4DFD996A165C9883002CC155 /* NSArray+Search.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

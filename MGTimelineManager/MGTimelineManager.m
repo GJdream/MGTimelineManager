@@ -27,12 +27,6 @@
         [newTweets addObject:tweet];
     }
     
-    [self.tweets addObjectsFromArray:newTweets];
-    
-    //sorts by date
-    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
-    [self.tweets sortUsingDescriptors:sortDescriptors];
-
     //set that we loaded this twitterID
     [timelinesLoaded setObject:[NSNumber numberWithBool:YES] forKey:twitterID];
     
@@ -51,6 +45,11 @@
         //no set timeline for twitter id yet so add all tweets
         [self.timelines setObject:newTweets forKey:twitterID];
     }
+    
+    //add new tweets and sort
+    [self.tweets addObjectsFromArray:newTweets];
+    NSArray *sortByDate = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
+    [self.tweets sortUsingDescriptors:sortByDate];
     
     //send new, sorted timeline to delegate
     if ([self.delegate respondsToSelector:@selector(timelineManagerLoadedNewTimeline:)]) {

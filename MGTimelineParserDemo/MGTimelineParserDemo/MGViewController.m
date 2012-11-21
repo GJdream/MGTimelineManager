@@ -55,7 +55,7 @@
 }
 
 #pragma mark - MGTimelineManagerDelegate methods
-- (void) timelineManagerLoadedNewTimeline:(MGTimelineManager *)timelineManager
+- (void) timelineManagerLoadedNewTimelines:(NSDictionary *)timelines
 {
     [tableView reloadData];
 }
