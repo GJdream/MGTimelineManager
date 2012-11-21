@@ -8,12 +8,18 @@
 
 #import "MGTimelineManager.h"
 #import "MGTweetItem.h"
+#import "NSArray+Search.h"
+
+@interface MGTimelineManager () {
+    int twitterIDsBeingFetched;
+}
+@end
 
 @implementation MGTimelineManager
 
-@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, recentlyFetchedTweets = _recentlyFetchedTweets;
+@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, timelines = _timelines;
 
-- (void)sortTweetsWithNewTimeline:(NSArray*)newTimeline
+- (void)sortTweetsWithNewTimeline:(NSArray*)newTimeline forTwitterID:(NSString*)twitterID
 {
     NSMutableArray *newTweets = [NSMutableArray array];
     for (NSArray *tweetData in newTimeline) {
@@ -22,14 +28,48 @@
     }
     
     [self.tweets addObjectsFromArray:newTweets];
-    self.recentlyFetchedTweets = [[NSMutableArray alloc] initWithArray:newTweets];
     
     //sorts by date
     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
     [self.tweets sortUsingDescriptors:sortDescriptors];
-    [self.recentlyFetchedTweets sortUsingDescriptors:sortDescriptors];
 
-    [self.delegate timelineManagerLoadedNewTimeline:self];
+    //set that we loaded this twitterID
+    [timelinesLoaded setObject:[NSNumber numberWithBool:YES] forKey:twitterID];
+    
+    if ([self.timelines objectForKey:twitterID]) {
+        //only keep new tweets! - remove old ones
+        NSDate *mostRecentTweet = ((MGTweetItem*)[[self.timelines objectForKey:twitterID] objectAtIndex:0]).dateCreated;
+        NSUInteger indexOfDate = [newTimeline binarySearchForDate:mostRecentTweet];
+        if (indexOfDate != NSNotFound) {
+            [newTweets removeObjectsInRange:NSMakeRange(indexOfDate, newTweets.count-indexOfDate)];
+            if (indexOfDate != 0) {
+                //add new timeline data to old timeline data
+                [[self.timelines objectForKey:twitterID] addObjectsFromArray:newTweets];
+            }
+        }
+    }else {
+        //no set timeline for twitter id yet so add all tweets
+        [self.timelines setObject:newTweets forKey:twitterID];
+    }
+    
+    //send new, sorted timeline to delegate
+    if ([self.delegate respondsToSelector:@selector(timelineManagerLoadedNewTimeline:)]) {
+        if (newTweets.count > 0) //checks for new tweets
+            [self.delegate timelineManagerLoadedNewTimeline:newTweets];
+        else //no new tweets - send nil
+            [self.delegate timelineManagerLoadedNewTimeline:nil];
+    }
+    
+    //checks to see if all feeds have been loaded
+    int i = self.timelineParser.twitterIDs.count; //should be 0 when all loaded
+    for (NSString *key in [timelinesLoaded allKeys]) {
+        if ([[timelinesLoaded objectForKey:key] boolValue])
+            i--;
+    }
+    //all feeds are loaded - send to delegate
+    if (i == 0 && [self.delegate respondsToSelector:@selector(timelineManagerLoadedNewTimelines:)]) {
+        [self.delegate timelineManagerLoadedNewTimelines:self.timelines];
+    }
 }
 
 - (id) initWithTwitterIDs:(NSArray*)twitterIDs
@@ -38,19 +78,40 @@
         _timelineParser = [[MGTimelineParser alloc] initWithTwitterIDs:twitterIDs];
         _timelineParser.delegate = self;
         _tweets = [[NSMutableArray alloc] init];
+        _timelines = [[NSMutableDictionary alloc] init];
+        
+        //act as if every twitter account is loaded
+        //makes sense if you look at fetchTimelines logic
+        NSMutableArray *yesArray = [NSMutableArray array];
+        for (int i = 0 ; i < twitterIDs.count; i++)
+            [yesArray addObject:[NSNumber numberWithBool:YES]];
+        timelinesLoaded = [[NSMutableDictionary alloc] initWithObjects:yesArray forKeys:twitterIDs];
     }
     return self;
 }
 
 - (void) fetchTimelines
 {
-    [self.timelineParser fetchTimelines];
+    //only set those that have been loaded
+    //don't want to load those that havent been loaded twice!
+    NSMutableArray *twitterIDsToLoad = [NSMutableArray array];
+    for (NSString *key in [timelinesLoaded allKeys]) {
+        BOOL alreadyLoaded = [[timelinesLoaded objectForKey:key] boolValue];
+        if (alreadyLoaded) {
+            [timelinesLoaded setObject:[NSNumber numberWithBool:NO] forKey:key];
+            [twitterIDsToLoad addObject:key];
+        }
+    }
+    
+    //only load those twitter IDs that have already been loaded before
+    //will load all twitterIDs if everyone has been loaded before or on first fetch
+    [self.timelineParser fetchTimelinesForTwitterIDs:twitterIDsToLoad];
 }
 
 #pragma mark - MGTimelineParserDelegate methods
 - (void) timelineParsingComplete:(NSArray *)timeline forTwitterID:(NSString *)twitterID
 {
-    [self sortTweetsWithNewTimeline:timeline];
+    [self sortTweetsWithNewTimeline:timeline forTwitterID:twitterID];
 }
 
 -(void) timelineConnectionError

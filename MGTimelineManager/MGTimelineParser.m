@@ -34,10 +34,14 @@
     return YES;
 }
 
--(void) fetchTimelines
+- (void) fetchTimelines {
+    [self fetchTimelinesForTwitterIDs:self.twitterIDs];
+}
+
+-(void) fetchTimelinesForTwitterIDs:(NSArray*)twitterIDs
 {
     if(self.isReachable) {
-        for (NSString *twitterID in self.twitterIDs)
+        for (NSString *twitterID in twitterIDs)
         {
             AFJSONRequestOperation *operation = [AFJSONRequestOperation twitterJSONRequestOperationWithTwitterID:twitterID timeoutInterval:self.timeout success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON, NSData *responseData) {
                 [self loadTimeline:JSON forTwitterID:twitterID];

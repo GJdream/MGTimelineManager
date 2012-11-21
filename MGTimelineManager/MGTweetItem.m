@@ -61,4 +61,9 @@
     return self;
 }
 
+- (NSInteger) compareDate:(MGTweetItem*)tweetItem
+{
+    return [self.dateCreated compare:tweetItem.dateCreated];
+}
+
 @end

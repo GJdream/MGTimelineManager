@@ -12,15 +12,27 @@
 @class MGTimelineManager;
 
 @protocol MGTimelineManagerDelegate <NSObject>
-@required
-- (void) timelineManagerLoadedNewTimeline:(MGTimelineManager*)timelineManager;
 @optional
+//sends individual timelines that were just loaded
+//"timelines" are full of MGTweetItems
+//will send nil if no new timeline data
+- (void) timelineManagerLoadedNewTimeline:(NSArray*)timeline;
+
+//sends a dictionary w/ timelines linked by their twitter ids
+//individual timelines in the timelines dictionary are full of MGTweetItems
+- (void) timelineManagerLoadedNewTimelines:(NSDictionary*)timelines; 
+
+//error
 - (void) timelineManagerConnectionError:(MGTimelineManager*)timelineManager;
 - (void) timelineManagerErrorLoadingTimelineForTwitterID:(NSString*)twitterID;
 @end
 
 @interface MGTimelineManager : NSObject <MGTimelineParserDelegate>
-{
+{    
+    //stores whether a twitterID was loaded or not
+    //key = twitterID
+    //value = NSNumber with bool value
+    NSMutableDictionary *timelinesLoaded;
 }
 
 //repsonsable for the actual timeline fetching/parsing
@@ -29,8 +41,10 @@
 //stores all tweets fetched
 @property (nonatomic) NSMutableArray *tweets;
 
-//stores the most recetn fetched tweets
-@property (nonatomic) NSMutableArray *recentlyFetchedTweets;
+//stores all of the individual timelines for each twitterID
+//key = twitterID
+//value = NSArray of MGTweets
+@property (nonatomic) NSMutableDictionary *timelines;
 
 @property (nonatomic) id <MGTimelineManagerDelegate> delegate;
 

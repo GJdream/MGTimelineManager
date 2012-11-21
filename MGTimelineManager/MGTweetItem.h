@@ -20,4 +20,6 @@
 //sets data property - the core this object
 - (id) initWithTweetData:(NSArray*) tweetData;
 
+- (NSInteger) compareDate:(MGTweetItem*)tweetItem;
+
 @end

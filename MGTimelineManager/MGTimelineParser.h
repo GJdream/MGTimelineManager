@@ -41,7 +41,10 @@
 //init w/ twitter ID(s)
 - (id) initWithTwitterIDs:(NSArray *)twitterIDs;
 
-//starts fetching the timeline(s)
+//starts fetching all the timeline(s) for each twitterID
 - (void) fetchTimelines;
+
+//should not use this directly - fetch timelines through MGTimelineMangager
+-(void) fetchTimelinesForTwitterIDs:(NSArray*)twitterIDs;
 
 @end
