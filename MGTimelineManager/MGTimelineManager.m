@@ -27,6 +27,9 @@
         [newTweets addObject:tweet];
     }
     
+    NSArray *sortByDate = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
+    [newTweets sortUsingDescriptors:sortByDate];
+    
     //set that we loaded this twitterID
     [timelinesLoaded setObject:[NSNumber numberWithBool:YES] forKey:twitterID];
     
@@ -34,12 +37,13 @@
         //only keep new tweets! - remove old ones
         NSDate *mostRecentTweet = ((MGTweetItem*)[[self.timelines objectForKey:twitterID] objectAtIndex:0]).dateCreated;
         NSUInteger indexOfDate = [newTweets binarySearchForDate:mostRecentTweet];
-        if (indexOfDate != NSNotFound) {
+        if (indexOfDate == 0) {
+            [newTweets removeAllObjects];
+        }
+        else if (indexOfDate != NSNotFound) {
             [newTweets removeObjectsInRange:NSMakeRange(indexOfDate, newTweets.count-indexOfDate)];
-            if (indexOfDate != 0) {
-                //add new timeline data to old timeline data
-                [[self.timelines objectForKey:twitterID] addObjectsFromArray:newTweets];
-            }
+            //add new timeline data to old timeline data
+            [[self.timelines objectForKey:twitterID] addObjectsFromArray:newTweets];
         }
     }else {
         //no set timeline for twitter id yet so add all tweets
@@ -48,7 +52,6 @@
     
     //add new tweets and sort
     [self.tweets addObjectsFromArray:newTweets];
-    NSArray *sortByDate = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
     [self.tweets sortUsingDescriptors:sortByDate];
     
     //send new, sorted timeline to delegate

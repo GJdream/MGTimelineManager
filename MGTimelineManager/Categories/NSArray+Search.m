@@ -29,7 +29,7 @@
     NSComparisonResult comparison = [searchDate compare:itemAtMidIndex.dateCreated];
     if (comparison == NSOrderedSame)
         return midIndex;
-    else if (comparison == NSOrderedAscending)
+    else if (comparison == NSOrderedDescending)
         return [self binarySearchForDate:searchDate minIndex:minIndex maxIndex:midIndex - 1];
     else
         return [self binarySearchForDate:searchDate minIndex:midIndex + 1 maxIndex:maxIndex];
