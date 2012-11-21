@@ -16,7 +16,7 @@
 //sends individual timelines that were JUST LOADED --- BRAND NEW tweets only
 //"timelines" are full of MGTweetItems
 //will send nil if no new timeline data
-- (void) timelineManagerLoadedNewTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID;
+- (void) timelineManagerLoadedNewTimeline:(NSArray*)newTweets forTwitterID:(NSString*)twitterID;
 
 //sends a dictionary w/ timelines linked by their twitter ids
 //individual timelines in the timelines dictionary are full of MGTweetItems
