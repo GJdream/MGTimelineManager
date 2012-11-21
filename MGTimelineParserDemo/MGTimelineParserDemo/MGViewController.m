@@ -15,6 +15,8 @@
     IBOutlet UITableView *tableView;
 }
 
+- (IBAction)refreshButtonPressed:(id)sender;
+
 @end
 
 @implementation MGViewController
@@ -27,6 +29,10 @@
     //head to http://www.idfromuser.com/ to lookup twitter IDs!
     manager = [[MGTimelineManager alloc] initWithTwitterIDs:[NSArray arrayWithObjects:@"63400533", @"486599947", nil]];
     manager.delegate = self;
+    [self refreshButtonPressed:nil];
+}
+
+- (IBAction)refreshButtonPressed:(id)sender {
     [manager fetchTimelines];
 }
 

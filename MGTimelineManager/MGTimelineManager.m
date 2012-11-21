@@ -33,7 +33,7 @@
     if ([self.timelines objectForKey:twitterID]) {
         //only keep new tweets! - remove old ones
         NSDate *mostRecentTweet = ((MGTweetItem*)[[self.timelines objectForKey:twitterID] objectAtIndex:0]).dateCreated;
-        NSUInteger indexOfDate = [newTimeline binarySearchForDate:mostRecentTweet];
+        NSUInteger indexOfDate = [newTweets binarySearchForDate:mostRecentTweet];
         if (indexOfDate != NSNotFound) {
             [newTweets removeObjectsInRange:NSMakeRange(indexOfDate, newTweets.count-indexOfDate)];
             if (indexOfDate != 0) {
