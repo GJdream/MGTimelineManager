@@ -17,7 +17,41 @@
 
 @implementation MGTimelineManager
 
-@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, timelines = _timelines;
+@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, timelines = _timelines, profilePictures = _profilePictures;
+
+- (NSMutableDictionary*) timelines {
+    if (!_timelines)
+        _timelines = [[NSMutableDictionary alloc] init];
+    return _timelines;
+}
+
+- (NSMutableDictionary*) profilePictures {
+    if (!_profilePictures)
+        _profilePictures = [[NSMutableDictionary alloc] init];
+    return _profilePictures;
+}
+
+- (NSMutableArray*) tweets {
+    if (!_tweets)
+        _tweets = [[NSMutableArray alloc] init];
+    return _tweets;
+}
+
+- (id) initWithTwitterIDs:(NSArray*)twitterIDs
+{
+    if (self = [super init]) {
+        _timelineParser = [[MGTimelineParser alloc] initWithTwitterIDs:twitterIDs];
+        _timelineParser.delegate = self;
+        
+        //act as if every twitter account is loaded
+        //makes sense if you look at fetchTimelines logic
+        NSMutableArray *yesArray = [NSMutableArray array];
+        for (int i = 0 ; i < twitterIDs.count; i++)
+            [yesArray addObject:[NSNumber numberWithBool:YES]];
+        timelinesLoaded = [[NSMutableDictionary alloc] initWithObjects:yesArray forKeys:twitterIDs];
+    }
+    return self;
+}
 
 - (void)sortTweetsWithNewTimeline:(NSArray*)newTimeline forTwitterID:(NSString*)twitterID
 {
@@ -25,6 +59,11 @@
     for (NSArray *tweetData in newTimeline) {
         MGTweetItem *tweet = [[MGTweetItem alloc] initWithTweetData:tweetData];
         [newTweets addObject:tweet];
+        
+        //only set/load profile pictures once
+        if ([self.profilePictures objectForKey:twitterID] == nil && tweet.profileImage != nil) {
+            [self.profilePictures setObject:tweet.profileImage forKey:twitterID];
+        }
     }
     
     NSArray *sortByDate = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:NO]];
@@ -72,24 +111,6 @@
     if (i == 0 && [self.delegate respondsToSelector:@selector(timelineManagerLoadedNewTimelines:)]) {
         [self.delegate timelineManagerLoadedNewTimelines:self.timelines];
     }
-}
-
-- (id) initWithTwitterIDs:(NSArray*)twitterIDs
-{
-    if (self = [super init]) {
-        _timelineParser = [[MGTimelineParser alloc] initWithTwitterIDs:twitterIDs];
-        _timelineParser.delegate = self;
-        _tweets = [[NSMutableArray alloc] init];
-        _timelines = [[NSMutableDictionary alloc] init];
-        
-        //act as if every twitter account is loaded
-        //makes sense if you look at fetchTimelines logic
-        NSMutableArray *yesArray = [NSMutableArray array];
-        for (int i = 0 ; i < twitterIDs.count; i++)
-            [yesArray addObject:[NSNumber numberWithBool:YES]];
-        timelinesLoaded = [[NSMutableDictionary alloc] initWithObjects:yesArray forKeys:twitterIDs];
-    }
-    return self;
 }
 
 - (void) fetchTimelines

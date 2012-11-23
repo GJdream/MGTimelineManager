@@ -10,7 +10,7 @@
 
 @implementation MGTweetItem
 
-@synthesize dateCreated = _dateCreated, data = _data, profileImage = _profileImage, username = _username, bodyText = _bodyText, idString = _idString;
+@synthesize dateCreated = _dateCreated, data = _data, profileImage = _profileImage, username = _username, bodyText = _bodyText, tweetID = _tweetID, userID = _userID;
 
 - (UIImage*) profileImage
 {
@@ -35,11 +35,18 @@
     return _bodyText;
 }
 
-- (NSString*) idString
+- (NSString*) tweetID
 {
-    if (_idString == nil)
-        _idString = [self.data valueForKey:@"id_str"];
-    return _idString;
+    if (_tweetID == nil)
+        _tweetID = [self.data valueForKey:@"id_str"];
+    return _tweetID;
+}
+
+- (NSString*) userID
+{
+    if (_userID == nil)
+        _userID = [self.data valueForKeyPath:@"user.id_str"];
+    return _userID;
 }
 
 - (NSDate*) dateCreated

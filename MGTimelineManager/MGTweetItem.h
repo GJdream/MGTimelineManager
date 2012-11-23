@@ -15,7 +15,8 @@
 @property (nonatomic) UIImage *profileImage;
 @property (nonatomic) NSString *username;
 @property (nonatomic) NSString *bodyText;
-@property (nonatomic) NSString *idString;
+@property (nonatomic) NSString *tweetID;
+@property (nonatomic) NSString *userID;
 
 //sets data property - the core this object
 - (id) initWithTweetData:(NSArray*) tweetData;
