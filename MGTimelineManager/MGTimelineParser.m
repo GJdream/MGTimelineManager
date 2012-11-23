@@ -21,7 +21,6 @@
         _twitterIDs = twitterIDs;
         _usernames = [[NSMutableArray alloc] init];
         _timeout = 60.0f;
-        timelinesDict = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -82,10 +81,7 @@
                 }
             }
         }
-        
-        //save timeline into dict for username key
-        [timelinesDict setObject:timeline forKey:twitterID];
-                
+                        
         //send fetched timline to delgate
         if ([self.delegate respondsToSelector:@selector(timelineParsingComplete:forTwitterID:)])
             [self.delegate timelineParsingComplete:timeline forTwitterID:twitterID];

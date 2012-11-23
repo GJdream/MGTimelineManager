@@ -16,12 +16,6 @@
 @end
 
 @interface MGTimelineParser : NSObject
-{
-    //stores all fetched timelines in a dictionary
-    //keys are twitterIDs
-    NSMutableDictionary *timelinesDict;
-}
-
 //this is what is used to load timeline data
 //use http://www.idfromuser.com/ to look up user ids
 //this is much more statble as IDs don't change but usernames can
