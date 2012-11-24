@@ -30,7 +30,7 @@ Here is an example usage of MGTimelineManagerDelegate Methods
 }
 
 //timeline will be nil if no new tweets were found
-- (void) timelineManagerLoadedNewTimeline:(NSArray *)timeline forTwitterID:(NSString *)twitterID
+- (void) timelineManagerLoadedNewTweets:(NSArray *)timeline forTwitterID:(NSString *)twitterID
 {
     
     NSLog(@"Timeline loaded for id - %@",twitterID);
