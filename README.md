@@ -58,7 +58,7 @@ Here is an example usage of MGTimelineManagerDelegate Methods
 ```
 
 OPTIONAL
-You can also load up saved timelines from the MGTimelineSaveUtil if you have any saved json timelines (See timelineManagerLoadedJSONTimeline: for saving json timelines)
+You can also load up saved timelines from the MGTimelineSaveUtil if you have any saved json timelines (See timelineManagerLoadedJSONTimeline: delegate method for saving json timelines)
 ```objc
     //makes sure there is at least one timeline saved
     if ([MGTimelineSaveUtil amountOfTimelinesSavedForTwitterIDs:[self twitterIDs]] > 0) {
