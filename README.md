@@ -53,7 +53,7 @@ Here is an example usage of MGTimelineManagerDelegate Methods
 //Use MGTimelineSaveUtil to save json timelines
 //could be useful to load up saved timelines instead of loading new timelines on every startup 
 - (void) timelineManagerLoadedJSONTimeline:(NSArray*)jsonTimeline forTwitterID:(NSString*)twitterID {
-    [MGTimelineSaveUtil saveTimeline:jsonTimeline forKey:twitterID];
+    [MGTimelineSaveUtil saveTimeline:jsonTimeline forTwitterID:twitterID];
 }
 ```
 
@@ -64,7 +64,7 @@ You can also load up saved timelines from the MGTimelineSaveUtil if you have any
     if ([MGTimelineSaveUtil amountOfTimelinesSavedForTwitterIDs:[self twitterIDs]] > 0) {
         for (NSString *twitterID in [self twitterIDs]) {
             //No need to check if the timeline being passed in exist (nil or not) b/c MGTimelineManager already checks for that when being loaded
-            [timelineManager loadSavedTimeline:[MGTimelineSaveUtil loadTimelineForKey:twitterID] forTwitterID:twitterID];
+            [timelineManager loadSavedTimeline:[MGTimelineSaveUtil loadTimelineForTwitterID:twitterID] forTwitterID:twitterID];
         }
     }else {
         //no saved timelines just fetch the new timelines

@@ -13,9 +13,9 @@
 
 + (NSString*) directoryPathForTwitterID:(NSString*)twitterID;
 
-+ (void) saveTimeline:(NSArray*)timeline forKey:(NSString*)key;
++ (void) saveTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID;
 
-+ (NSArray*) loadTimelineForKey:(NSString*)key;
++ (NSArray*) loadTimelineForTwitterID:(NSString*)twitterID;
 
 + (int) amountOfTimelinesSavedForTwitterIDs:(NSArray*)twitterIDs;
 

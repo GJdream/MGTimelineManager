@@ -15,12 +15,12 @@
     return [NSString stringWithFormat:@"%@/%@.plist",docDir,twitterID];
 }
 
-+ (void) saveTimeline:(NSArray*)timeline forKey:(NSString*)key {
-    [NSKeyedArchiver archiveRootObject:timeline toFile:[self directoryPathForTwitterID:key]];
++ (void) saveTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID {
+    [NSKeyedArchiver archiveRootObject:timeline toFile:[self directoryPathForTwitterID:twitterID]];
 }
 
-+ (NSArray*) loadTimelineForKey:(NSString*)key {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self directoryPathForTwitterID:key]];
++ (NSArray*) loadTimelineForTwitterID:(NSString*)twitterID {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self directoryPathForTwitterID:twitterID]];
 }
 
 + (int) amountOfTimelinesSavedForTwitterIDs:(NSArray*)twitterIDs {
