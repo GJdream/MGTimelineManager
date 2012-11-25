@@ -22,7 +22,9 @@
 //individual timelines in the timelines dictionary are full of MGTweetItems
 - (void) timelineManagerLoadedNewTimelines:(NSDictionary*)timelines;
 
-//- (void) timelineManagerLoadedNewTimeline:(NSArray*)newTweets forTwitterID:(NSString*)twitterID;
+//sends a raw json timeline fetched from twitter - could be helpful for saving timelines for later use...
+//(i.e. on startup load & parse saved json timeline)
+- (void) timelineManagerLoadedJSONTimeline:(NSArray*)jsonTimeline forTwitterID:(NSString*)twitterID;
 
 //errors
 - (void) timelineManagerConnectionError:(MGTimelineManager*)timelineManager;
@@ -61,5 +63,9 @@
 
 //helper method that calls fetchTimelines in MGTimelineParser
 - (void) fetchTimelines;
+
+//DO NOT USE unless loading saved timelines
+//RECOMMENDED that you call this on startup with your saved timeline (nsarray)
+- (void) loadSavedTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID;
 
 @end

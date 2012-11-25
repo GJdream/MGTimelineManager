@@ -48,5 +48,12 @@ Here is an example usage of MGTimelineManagerDelegate Methods
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:message delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
     [alert show];
 }
+
+//Use MGTimelineSaveUtil to save json timelines
+//could be useful to load up saved timelines instead of loading new
+//timelines on every startup -- otherwise OPTIONAL  
+- (void) timelineManagerLoadedJSONTimeline:(NSArray*)jsonTimeline forTwitterID:(NSString*)twitterID {
+    [MGTimelineSaveUtil saveTimeline:jsonTimeline forKey:twitterID];
+}
 ```
 Checkout the demo project for a full example.

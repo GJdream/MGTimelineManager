@@ -55,6 +55,9 @@
 
 - (void)sortTweetsWithNewTimeline:(NSArray*)newTimeline forTwitterID:(NSString*)twitterID
 {
+    if (!newTimeline)
+        return;
+    
     NSMutableArray *newTweets = [NSMutableArray array];
     for (NSArray *tweetData in newTimeline) {
         MGTweetItem *tweet = [[MGTweetItem alloc] initWithTweetData:tweetData];
@@ -113,6 +116,10 @@
     }
 }
 
+- (void) loadSavedTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID {
+    [self sortTweetsWithNewTimeline:timeline forTwitterID:twitterID];
+}
+
 - (void) fetchTimelines
 {
     //only set those that have been loaded
@@ -135,6 +142,10 @@
 - (void) timelineParsingComplete:(NSArray *)timeline forTwitterID:(NSString *)twitterID
 {
     [self sortTweetsWithNewTimeline:timeline forTwitterID:twitterID];
+    
+    if ([self.delegate respondsToSelector:@selector(timelineManagerLoadedJSONTimeline:forTwitterID:)]) {
+        [self.delegate timelineManagerLoadedJSONTimeline:timeline forTwitterID:twitterID];
+    }
 }
 
 -(void) timelineConnectionError
