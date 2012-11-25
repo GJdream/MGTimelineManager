@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MGTimelineParser.h"
+#import "MGTimelineSaveUtil.h"
 
 @class MGTimelineManager;
 
@@ -65,7 +66,7 @@
 - (void) fetchTimelines;
 
 //DO NOT USE unless loading saved timelines
-//RECOMMENDED that you call this on startup with your saved timeline (nsarray)
-- (void) loadSavedTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID;
+//RECOMMENDED that you call this on startup
+- (void) loadSavedTimelinesForTwitterIDs:(NSArray*)twitterIDs;
 
 @end

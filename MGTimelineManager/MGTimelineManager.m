@@ -116,8 +116,18 @@
     }
 }
 
-- (void) loadSavedTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID {
-    [self sortTweetsWithNewTimeline:timeline forTwitterID:twitterID];
+- (void) loadSavedTimelinesForTwitterIDs:(NSArray*)twitterIDs {
+    //only load those that are not being loaded currently -- rare case
+    //only time it wouldn't load all saved timelines would if you called fetchTimelines
+    //and then called loadSavedTimelinesForTwitterIDs:
+    for (NSString *twitterID in [timelinesLoaded allKeys]) {
+        BOOL alreadyLoaded = [[timelinesLoaded objectForKey:twitterID] boolValue];
+        if (alreadyLoaded) {
+            [timelinesLoaded setObject:[NSNumber numberWithBool:NO] forKey:twitterID];
+            [self sortTweetsWithNewTimeline:[MGTimelineSaveUtil loadTimelineForTwitterID:twitterID] forTwitterID:twitterID];
+        }
+    }
+    
 }
 
 - (void) fetchTimelines

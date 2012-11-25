@@ -62,14 +62,11 @@ You can also load up saved timelines from the MGTimelineSaveUtil if you have any
 ```objc
     //makes sure there is at least one timeline saved
     if ([MGTimelineSaveUtil amountOfTimelinesSavedForTwitterIDs:[self twitterIDs]] > 0) {
-        for (NSString *twitterID in [self twitterIDs]) {
-            //No need to check if the timeline being passed in exist (nil or not) b/c MGTimelineManager already checks for that when being loaded
-            [timelineManager loadSavedTimeline:[MGTimelineSaveUtil loadTimelineForTwitterID:twitterID] forTwitterID:twitterID];
-        }
+        [timelineManager loadSavedTimelinesForTwitterIDs:[self twitterIDs]];
     }else {
-        //no saved timelines just fetch the new timelines
         [timelineManager fetchTimelines];
     }
+
 ```
 
 Checkout the demo project for a full example.
