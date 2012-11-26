@@ -120,14 +120,17 @@
     //only load those that are not being loaded currently -- rare case
     //only time it wouldn't load all saved timelines would if you called fetchTimelines
     //and then called loadSavedTimelinesForTwitterIDs:
-    for (NSString *twitterID in [timelinesLoaded allKeys]) {
+    NSMutableArray *twitterIDsToLoad = [NSMutableArray array];
+    for (NSString *twitterID in twitterIDs) {
         BOOL alreadyLoaded = [[timelinesLoaded objectForKey:twitterID] boolValue];
         if (alreadyLoaded) {
             [timelinesLoaded setObject:[NSNumber numberWithBool:NO] forKey:twitterID];
-            [self sortTweetsWithNewTimeline:[MGTimelineSaveUtil loadTimelineForTwitterID:twitterID] forTwitterID:twitterID];
+            [twitterIDsToLoad addObject:twitterID];
         }
     }
     
+    for (NSString *twitterID in twitterIDs)
+        [self sortTweetsWithNewTimeline:[MGTimelineSaveUtil loadTimelineForTwitterID:twitterID] forTwitterID:twitterID];
 }
 
 - (void) fetchTimelines
