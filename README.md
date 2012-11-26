@@ -69,4 +69,6 @@ You can also load up saved timelines from the MGTimelineSaveUtil if you have any
 
 ```
 
-Checkout the demo project for a full example.
+### Other
+- Check out the demo!
+- Let me know if you use MGTimelineManager in your app!
