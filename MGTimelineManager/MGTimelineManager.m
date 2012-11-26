@@ -85,7 +85,8 @@
         else if (indexOfDate != NSNotFound) {
             [newTweets removeObjectsInRange:NSMakeRange(indexOfDate, newTweets.count-indexOfDate)];
             //add new timeline data to old timeline data
-            [[self.timelines objectForKey:twitterID] addObjectsFromArray:newTweets];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, newTweets.count)];
+            [[self.timelines objectForKey:twitterID] insertObjects:newTweets atIndexes:indexSet];
         }
     }else {
         //no set timeline for twitter id yet so add all tweets

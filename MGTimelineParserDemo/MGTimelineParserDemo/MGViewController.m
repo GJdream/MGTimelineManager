@@ -27,7 +27,7 @@
 @implementation MGViewController
 
 - (NSArray*) twitterIDs {
-    return [NSArray arrayWithObjects:@"63400533", @"486599947", nil];
+    return [NSArray arrayWithObjects:@"63400533", @"486599947", @"745904089", nil];
 }
 
 - (void)viewDidLoad
