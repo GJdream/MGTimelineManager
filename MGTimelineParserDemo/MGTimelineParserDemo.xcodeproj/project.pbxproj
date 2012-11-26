@@ -45,6 +45,10 @@
 		4D6441A4165989C400E17540 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644180165989C400E17540 /* SBJsonTokeniser.m */; };
 		4D6441A5165989C400E17540 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644182165989C400E17540 /* SBJsonUTF8Stream.m */; };
 		4D6441A6165989C400E17540 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644184165989C400E17540 /* SBJsonWriter.m */; };
+		4D9EE7E41662FBAA003799EA /* MGTimelineSaveUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE7E31662FBAA003799EA /* MGTimelineSaveUtil.m */; };
+		4D9EE7EB1662FD56003799EA /* MGTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE7EA1662FD56003799EA /* MGTweetCell.m */; };
+		4D9EE7EF1662FDC9003799EA /* NSDate+Readable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE7EE1662FDC9003799EA /* NSDate+Readable.m */; };
+		4D9EE7F11662FE13003799EA /* MGTweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9EE7F01662FE13003799EA /* MGTweetCell.xib */; };
 		4DFD996A165C9883002CC155 /* NSArray+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD9969165C9883002CC155 /* NSArray+Search.m */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +124,13 @@
 		4D644182165989C400E17540 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		4D644183165989C400E17540 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4D644184165989C400E17540 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		4D9EE7E21662FBAA003799EA /* MGTimelineSaveUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTimelineSaveUtil.h; sourceTree = "<group>"; };
+		4D9EE7E31662FBAA003799EA /* MGTimelineSaveUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTimelineSaveUtil.m; sourceTree = "<group>"; };
+		4D9EE7E91662FD56003799EA /* MGTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTweetCell.h; sourceTree = "<group>"; };
+		4D9EE7EA1662FD56003799EA /* MGTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTweetCell.m; sourceTree = "<group>"; };
+		4D9EE7ED1662FDC9003799EA /* NSDate+Readable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Readable.h"; sourceTree = "<group>"; };
+		4D9EE7EE1662FDC9003799EA /* NSDate+Readable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Readable.m"; sourceTree = "<group>"; };
+		4D9EE7F01662FE13003799EA /* MGTweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MGTweetCell.xib; sourceTree = "<group>"; };
 		4DFD9968165C9883002CC155 /* NSArray+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Search.h"; sourceTree = "<group>"; };
 		4DFD9969165C9883002CC155 /* NSArray+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Search.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,9 +184,10 @@
 			children = (
 				4D643F6D16596A1200E17540 /* MGAppDelegate.h */,
 				4D643F6E16596A1200E17540 /* MGAppDelegate.m */,
-				4D643F7616596A1200E17540 /* MGViewController.h */,
-				4D643F7716596A1200E17540 /* MGViewController.m */,
-				4D643F7916596A1200E17540 /* MGViewController_iPhone.xib */,
+				4D9EE7EC1662FDAE003799EA /* Categories */,
+				4D9EE7E61662FD22003799EA /* Controllers */,
+				4D9EE7E81662FD40003799EA /* Views */,
+				4D9EE7E71662FD30003799EA /* Resources */,
 				4D643F6516596A1200E17540 /* Supporting Files */,
 			);
 			path = MGTimelineParserDemo;
@@ -204,6 +216,8 @@
 				4D644149165989C400E17540 /* MGTimelineParser.m */,
 				4D64414A165989C400E17540 /* MGTweetItem.h */,
 				4D64414B165989C400E17540 /* MGTweetItem.m */,
+				4D9EE7E21662FBAA003799EA /* MGTimelineSaveUtil.h */,
+				4D9EE7E31662FBAA003799EA /* MGTimelineSaveUtil.m */,
 				4D644143165989C400E17540 /* Categories */,
 				4D64414C165989C400E17540 /* Vendor */,
 			);
@@ -315,6 +329,42 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		4D9EE7E61662FD22003799EA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4D643F7616596A1200E17540 /* MGViewController.h */,
+				4D643F7716596A1200E17540 /* MGViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4D9EE7E71662FD30003799EA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4D643F7916596A1200E17540 /* MGViewController_iPhone.xib */,
+				4D9EE7F01662FE13003799EA /* MGTweetCell.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4D9EE7E81662FD40003799EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D9EE7E91662FD56003799EA /* MGTweetCell.h */,
+				4D9EE7EA1662FD56003799EA /* MGTweetCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		4D9EE7EC1662FDAE003799EA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4D9EE7ED1662FDC9003799EA /* NSDate+Readable.h */,
+				4D9EE7EE1662FDC9003799EA /* NSDate+Readable.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -372,6 +422,7 @@
 				4D643F7316596A1200E17540 /* Default@2x.png in Resources */,
 				4D643F7516596A1200E17540 /* Default-568h@2x.png in Resources */,
 				4D643F7B16596A1200E17540 /* MGViewController_iPhone.xib in Resources */,
+				4D9EE7F11662FE13003799EA /* MGTweetCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +463,9 @@
 				4D6441A5165989C400E17540 /* SBJsonUTF8Stream.m in Sources */,
 				4D6441A6165989C400E17540 /* SBJsonWriter.m in Sources */,
 				4DFD996A165C9883002CC155 /* NSArray+Search.m in Sources */,
+				4D9EE7E41662FBAA003799EA /* MGTimelineSaveUtil.m in Sources */,
+				4D9EE7EB1662FD56003799EA /* MGTweetCell.m in Sources */,
+				4D9EE7EF1662FDC9003799EA /* NSDate+Readable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
