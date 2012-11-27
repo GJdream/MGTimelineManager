@@ -13,13 +13,24 @@
 
 @implementation MGTimelineParser
 
-@synthesize usernames = _usernames, isReachable, timeout = _timeout, twitterIDs = _twitterIDs, delegate = _delegate;
+@synthesize usernames = _usernames, isReachable, timeout = _timeout, twitterIDs = _twitterIDs, delegate = _delegate, usernamesDictionary = _usernamesDictionary;
+
+- (NSMutableArray*) usernames {
+    if (!_usernames)
+        _usernames = [[NSMutableArray alloc] init];
+    return _usernames;
+}
+
+- (NSMutableDictionary*) usernamesDictionary {
+    if (!_usernamesDictionary)
+        _usernamesDictionary = [[NSMutableDictionary alloc] init];
+    return _usernamesDictionary;
+}
 
 - (id) initWithTwitterIDs:(NSArray *)twitterIDs
 {
     if (self = [super init]) {
         _twitterIDs = twitterIDs;
-        _usernames = [[NSMutableArray alloc] init];
         _timeout = 60.0f;
     }
     return self;
@@ -77,6 +88,7 @@
                 MGTweetItem *tweet = [[MGTweetItem alloc] initWithTweetData:tweetData];
                 if (tweet.username != nil) {
                     [self.usernames addObject:tweet.username];
+                    [self.usernamesDictionary setObject:tweet.username forKey:twitterID];
                     break;
                 }
             }
