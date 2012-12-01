@@ -13,19 +13,7 @@
 
 @implementation MGTimelineParser
 
-@synthesize usernames = _usernames, isReachable, timeout = _timeout, twitterIDs = _twitterIDs, delegate = _delegate, usernamesDictionary = _usernamesDictionary;
-
-- (NSMutableArray*) usernames {
-    if (!_usernames)
-        _usernames = [[NSMutableArray alloc] init];
-    return _usernames;
-}
-
-- (NSMutableDictionary*) usernamesDictionary {
-    if (!_usernamesDictionary)
-        _usernamesDictionary = [[NSMutableDictionary alloc] init];
-    return _usernamesDictionary;
-}
+@synthesize isReachable, timeout = _timeout, twitterIDs = _twitterIDs, delegate = _delegate;
 
 - (id) initWithTwitterIDs:(NSArray *)twitterIDs
 {
@@ -80,20 +68,7 @@
 
 - (void) loadTimeline:(NSArray*)timeline forTwitterID:(NSString*)twitterID
 {
-    if ([self isTimelineValid:timeline]) {        
-        //sets NEW usernames
-        //could be bad if you add twitterIDs or remove them after being set
-        if ([self.usernames count] < [self.twitterIDs count]) {
-            for (NSArray *tweetData in timeline) {
-                MGTweetItem *tweet = [[MGTweetItem alloc] initWithTweetData:tweetData];
-                if (tweet.username != nil) {
-                    [self.usernames addObject:tweet.username];
-                    [self.usernamesDictionary setObject:tweet.username forKey:twitterID];
-                    break;
-                }
-            }
-        }
-                        
+    if ([self isTimelineValid:timeline]) {
         //send fetched timline to delgate
         if ([self.delegate respondsToSelector:@selector(timelineParsingComplete:forTwitterID:)])
             [self.delegate timelineParsingComplete:timeline forTwitterID:twitterID];

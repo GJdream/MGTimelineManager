@@ -21,14 +21,6 @@
 //this is much more statble as IDs don't change but usernames can
 @property (nonatomic,readonly) NSArray *twitterIDs;
 
-//will be set after loading timeline data
-@property (nonatomic, readonly) NSMutableArray *usernames;
-
-//stores usernames for each twitterID
-//key = twitterID
-//value = NSString
-@property (nonatomic, readonly) NSMutableDictionary *usernamesDictionary;
-
 //Default is 60.0f
 @property (nonatomic) float timeout;
 

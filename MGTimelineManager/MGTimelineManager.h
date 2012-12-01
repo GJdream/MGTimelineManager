@@ -43,6 +43,11 @@
 //repsonsable for the actual timeline fetching/parsing
 @property (nonatomic) MGTimelineParser *timelineParser;
 
+//stores usernames for each twitterID
+//key = twitterID
+//value = NSString
+@property (nonatomic, readonly) NSMutableDictionary *usernamesDictionary;
+
 //stores all tweets fetched
 @property (nonatomic) NSMutableArray *tweets;
 
@@ -68,5 +73,8 @@
 //DO NOT USE unless loading saved timelines
 //RECOMMENDED that you call this on startup
 - (void) loadSavedTimelinesForTwitterIDs:(NSArray*)twitterIDs;
+
+//returns all objects from usernamesDictionary which are all the usernames
+- (NSArray*) allUsernames;
 
 @end

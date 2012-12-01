@@ -17,12 +17,22 @@
 
 @implementation MGTimelineManager
 
-@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, timelines = _timelines, profilePictures = _profilePictures;
+@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, timelines = _timelines, profilePictures = _profilePictures, usernamesDictionary = _usernamesDictionary;
 
 - (NSMutableDictionary*) timelines {
     if (!_timelines)
         _timelines = [[NSMutableDictionary alloc] init];
     return _timelines;
+}
+
+- (NSArray*) allUsernames {
+    return [self.usernamesDictionary allValues];
+}
+
+- (NSMutableDictionary*) usernamesDictionary {
+    if (!_usernamesDictionary)
+        _usernamesDictionary = [[NSMutableDictionary alloc] init];
+    return _usernamesDictionary;
 }
 
 - (NSMutableDictionary*) profilePictures {
@@ -62,6 +72,15 @@
     for (NSArray *tweetData in newTimeline) {
         MGTweetItem *tweet = [[MGTweetItem alloc] initWithTweetData:tweetData];
         [newTweets addObject:tweet];
+        
+        //add new usernames to dictionary
+        if ([[self.usernamesDictionary allKeys] count] < [self.timelineParser.twitterIDs count] &&
+            [self.usernamesDictionary objectForKey:tweet.userID] == nil) {
+            if (tweet.username != nil) {
+                [self.usernamesDictionary setObject:tweet.username forKey:twitterID];
+                NSLog(@"Adding Username - %@",tweet.username);
+            }
+        }
         
         //only set/load profile pictures once
         if ([self.profilePictures objectForKey:twitterID] == nil && tweet.profileImage != nil) {
