@@ -65,8 +65,11 @@
 
 - (void)sortTweetsWithNewTimeline:(NSArray*)newTimeline forTwitterID:(NSString*)twitterID
 {
-    if (!newTimeline)
+    if (!newTimeline) {
+        //set that we loaded this twitterID
+        [timelinesLoaded setObject:[NSNumber numberWithBool:YES] forKey:twitterID];
         return;
+    }
     
     NSMutableArray *newTweets = [NSMutableArray array];
     for (NSArray *tweetData in newTimeline) {
