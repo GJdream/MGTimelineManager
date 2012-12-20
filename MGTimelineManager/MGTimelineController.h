@@ -38,6 +38,10 @@
 //check out http://www.idfromuser.com/ for twitterIDs
 - (NSArray*) twitterIDs;
 
+
+//called upon completion
+- (void) timelinesLoadComplete;
+
 //override to handle errors
 //currently do nothing but log info
 -(void) timelineConnectionError;

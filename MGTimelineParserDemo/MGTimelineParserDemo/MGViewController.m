@@ -46,6 +46,12 @@
     [self fetchTimelines];
 }
 
+- (void) dealloc {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
+    dispatch_release(feedFetchQueue);
+#endif
+}
+
 - (IBAction)refreshButtonPressed:(id)sender
 {
     dispatch_async(feedFetchQueue, ^{

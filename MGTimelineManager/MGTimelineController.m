@@ -90,6 +90,7 @@
     }
     //all feeds are loaded - save tweets for later use!
     if (i == 0) {
+        [self timelinesLoadComplete];
         [self saveTimelineContext];
     }
     
@@ -116,6 +117,10 @@
 #pragma mark - MGTimelineParserDelegate methods
 - (void) timelineParsingComplete:(NSArray *)timeline forTwitterID:(NSString *)twitterID {
     [self sortTweetsWithNewTimeline:timeline forTwitterID:twitterID];
+}
+
+- (void) timelinesLoadComplete {
+    NSLog(@"Timeline Completed Load");
 }
 
 -(void) timelineConnectionError {
