@@ -17,7 +17,7 @@
 
 @implementation MGTimelineManager
 
-@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, timelines = _timelines, profilePictures = _profilePictures, usernamesDictionary = _usernamesDictionary;
+@synthesize timelineParser = _timelineParser, tweets = _tweets, delegate = _delegate, timelines = _timelines, usernamesDictionary = _usernamesDictionary;
 
 - (NSMutableDictionary*) timelines {
     if (!_timelines)
@@ -33,12 +33,6 @@
     if (!_usernamesDictionary)
         _usernamesDictionary = [[NSMutableDictionary alloc] init];
     return _usernamesDictionary;
-}
-
-- (NSMutableDictionary*) profilePictures {
-    if (!_profilePictures)
-        _profilePictures = [[NSMutableDictionary alloc] init];
-    return _profilePictures;
 }
 
 - (NSMutableArray*) tweets {
@@ -83,11 +77,6 @@
                 [self.usernamesDictionary setObject:tweet.username forKey:twitterID];
                 NSLog(@"Adding Username - %@",tweet.username);
             }
-        }
-        
-        //only set/load profile pictures once
-        if ([self.profilePictures objectForKey:twitterID] == nil && tweet.profileImage != nil) {
-            [self.profilePictures setObject:tweet.profileImage forKey:twitterID];
         }
     }
     

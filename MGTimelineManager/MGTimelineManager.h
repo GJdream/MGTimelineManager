@@ -51,15 +51,10 @@
 //stores all tweets fetched
 @property (nonatomic) NSMutableArray *tweets;
 
-//stores all of the individual timelines for each twitterID
+//stores all of the individual timelines for each twittweetItem.profileImageURLterID
 //key = twitterID
 //value = NSArray of MGTweets
 @property (nonatomic) NSMutableDictionary *timelines;
-
-//stores all of the individual profile pictures for each twitterID
-//key = twitterID
-//value = UIImage
-@property (nonatomic) NSMutableDictionary *profilePictures;
 
 @property (nonatomic) id <MGTimelineManagerDelegate> delegate;
 

@@ -77,7 +77,6 @@
     
     MGTweetItem *item = [timelineManager.tweets objectAtIndex:indexPath.row];
     cell.tweetItem = item;
-    cell.profileImageView.image = [timelineManager.profilePictures objectForKey:item.userID];
     
     return cell;
 }
