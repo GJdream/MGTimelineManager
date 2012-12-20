@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D5D30871682D6B200223300 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D30861682D6B200223300 /* AsyncImageView.m */; };
 		4D643F5F16596A1200E17540 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D643F5E16596A1200E17540 /* UIKit.framework */; };
 		4D643F6116596A1200E17540 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D643F6016596A1200E17540 /* Foundation.framework */; };
 		4D643F6316596A1200E17540 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D643F6216596A1200E17540 /* CoreGraphics.framework */; };
@@ -20,9 +21,8 @@
 		4D643F7B16596A1200E17540 /* MGViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D643F7916596A1200E17540 /* MGViewController_iPhone.xib */; };
 		4D6441051659780100E17540 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6441041659780100E17540 /* SystemConfiguration.framework */; };
 		4D644188165989C400E17540 /* AFJSONRequestOperation+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644145165989C400E17540 /* AFJSONRequestOperation+Twitter.m */; };
-		4D644189165989C400E17540 /* MGTimelineManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644147165989C400E17540 /* MGTimelineManager.m */; };
+		4D644189165989C400E17540 /* MGTimelineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644147165989C400E17540 /* MGTimelineController.m */; };
 		4D64418A165989C400E17540 /* MGTimelineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644149165989C400E17540 /* MGTimelineParser.m */; };
-		4D64418B165989C400E17540 /* MGTweetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D64414B165989C400E17540 /* MGTweetItem.m */; };
 		4D64418D165989C400E17540 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644151165989C400E17540 /* AFHTTPClient.m */; };
 		4D64418E165989C400E17540 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644153165989C400E17540 /* AFHTTPRequestOperation.m */; };
 		4D64418F165989C400E17540 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644155165989C400E17540 /* AFImageRequestOperation.m */; };
@@ -45,14 +45,19 @@
 		4D6441A4165989C400E17540 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644180165989C400E17540 /* SBJsonTokeniser.m */; };
 		4D6441A5165989C400E17540 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644182165989C400E17540 /* SBJsonUTF8Stream.m */; };
 		4D6441A6165989C400E17540 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D644184165989C400E17540 /* SBJsonWriter.m */; };
-		4D9EE7E41662FBAA003799EA /* MGTimelineSaveUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE7E31662FBAA003799EA /* MGTimelineSaveUtil.m */; };
+		4D9BF414167E38FD00EB08FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9BF412167E38F600EB08FB /* CoreData.framework */; };
+		4D9BF41B167E399100EB08FB /* MGTimlineManagerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D9BF419167E399100EB08FB /* MGTimlineManagerModel.xcdatamodeld */; };
+		4D9BF41E167E3DDC00EB08FB /* MGProfilePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9BF41D167E3DDC00EB08FB /* MGProfilePicture.m */; };
+		4D9BF421167E3DE300EB08FB /* MGTweetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9BF420167E3DE300EB08FB /* MGTweetItem.m */; };
+		4D9BF424167E3F9F00EB08FB /* NSDate+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9BF423167E3F9F00EB08FB /* NSDate+Convert.m */; };
 		4D9EE7EB1662FD56003799EA /* MGTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE7EA1662FD56003799EA /* MGTweetCell.m */; };
 		4D9EE7EF1662FDC9003799EA /* NSDate+Readable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE7EE1662FDC9003799EA /* NSDate+Readable.m */; };
 		4D9EE7F11662FE13003799EA /* MGTweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9EE7F01662FE13003799EA /* MGTweetCell.xib */; };
-		4DFD996A165C9883002CC155 /* NSArray+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFD9969165C9883002CC155 /* NSArray+Search.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D5D30851682D6B200223300 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		4D5D30861682D6B200223300 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		4D643F5A16596A1200E17540 /* MGTimelineParserDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGTimelineParserDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D643F5E16596A1200E17540 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D643F6016596A1200E17540 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,12 +77,10 @@
 		4D6441041659780100E17540 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4D644144165989C400E17540 /* AFJSONRequestOperation+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFJSONRequestOperation+Twitter.h"; sourceTree = "<group>"; };
 		4D644145165989C400E17540 /* AFJSONRequestOperation+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFJSONRequestOperation+Twitter.m"; sourceTree = "<group>"; };
-		4D644146165989C400E17540 /* MGTimelineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTimelineManager.h; sourceTree = "<group>"; };
-		4D644147165989C400E17540 /* MGTimelineManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTimelineManager.m; sourceTree = "<group>"; };
+		4D644146165989C400E17540 /* MGTimelineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTimelineController.h; sourceTree = "<group>"; };
+		4D644147165989C400E17540 /* MGTimelineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTimelineController.m; sourceTree = "<group>"; };
 		4D644148165989C400E17540 /* MGTimelineParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTimelineParser.h; sourceTree = "<group>"; };
 		4D644149165989C400E17540 /* MGTimelineParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTimelineParser.m; sourceTree = "<group>"; };
-		4D64414A165989C400E17540 /* MGTweetItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTweetItem.h; sourceTree = "<group>"; };
-		4D64414B165989C400E17540 /* MGTweetItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTweetItem.m; sourceTree = "<group>"; };
 		4D644150165989C400E17540 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		4D644151165989C400E17540 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		4D644152165989C400E17540 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -124,15 +127,19 @@
 		4D644182165989C400E17540 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		4D644183165989C400E17540 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4D644184165989C400E17540 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		4D9EE7E21662FBAA003799EA /* MGTimelineSaveUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTimelineSaveUtil.h; sourceTree = "<group>"; };
-		4D9EE7E31662FBAA003799EA /* MGTimelineSaveUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTimelineSaveUtil.m; sourceTree = "<group>"; };
+		4D9BF412167E38F600EB08FB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4D9BF41A167E399100EB08FB /* MGTimlineManagerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MGTimlineManagerModel.xcdatamodel; sourceTree = "<group>"; };
+		4D9BF41C167E3DDC00EB08FB /* MGProfilePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGProfilePicture.h; sourceTree = "<group>"; };
+		4D9BF41D167E3DDC00EB08FB /* MGProfilePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGProfilePicture.m; sourceTree = "<group>"; };
+		4D9BF41F167E3DE300EB08FB /* MGTweetItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTweetItem.h; sourceTree = "<group>"; };
+		4D9BF420167E3DE300EB08FB /* MGTweetItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTweetItem.m; sourceTree = "<group>"; };
+		4D9BF422167E3F9F00EB08FB /* NSDate+Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Convert.h"; sourceTree = "<group>"; };
+		4D9BF423167E3F9F00EB08FB /* NSDate+Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Convert.m"; sourceTree = "<group>"; };
 		4D9EE7E91662FD56003799EA /* MGTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTweetCell.h; sourceTree = "<group>"; };
 		4D9EE7EA1662FD56003799EA /* MGTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTweetCell.m; sourceTree = "<group>"; };
 		4D9EE7ED1662FDC9003799EA /* NSDate+Readable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Readable.h"; sourceTree = "<group>"; };
 		4D9EE7EE1662FDC9003799EA /* NSDate+Readable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Readable.m"; sourceTree = "<group>"; };
 		4D9EE7F01662FE13003799EA /* MGTweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MGTweetCell.xib; sourceTree = "<group>"; };
-		4DFD9968165C9883002CC155 /* NSArray+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Search.h"; sourceTree = "<group>"; };
-		4DFD9969165C9883002CC155 /* NSArray+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Search.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D9BF414167E38FD00EB08FB /* CoreData.framework in Frameworks */,
 				4D6441051659780100E17540 /* SystemConfiguration.framework in Frameworks */,
 				4D643F5F16596A1200E17540 /* UIKit.framework in Frameworks */,
 				4D643F6116596A1200E17540 /* Foundation.framework in Frameworks */,
@@ -150,6 +158,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D5D30831682D15900223300 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D30841682D6B200223300 /* AsyncImageView */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		4D5D30841682D6B200223300 /* AsyncImageView */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D30851682D6B200223300 /* AsyncImageView.h */,
+				4D5D30861682D6B200223300 /* AsyncImageView.m */,
+			);
+			path = AsyncImageView;
+			sourceTree = "<group>";
+		};
 		4D643F4F16596A1200E17540 = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +196,7 @@
 		4D643F5D16596A1200E17540 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4D9BF412167E38F600EB08FB /* CoreData.framework */,
 				4D6441041659780100E17540 /* SystemConfiguration.framework */,
 				4D643F5E16596A1200E17540 /* UIKit.framework */,
 				4D643F6016596A1200E17540 /* Foundation.framework */,
@@ -188,6 +214,7 @@
 				4D9EE7E61662FD22003799EA /* Controllers */,
 				4D9EE7E81662FD40003799EA /* Views */,
 				4D9EE7E71662FD30003799EA /* Resources */,
+				4D5D30831682D15900223300 /* Vendor */,
 				4D643F6516596A1200E17540 /* Supporting Files */,
 			);
 			path = MGTimelineParserDemo;
@@ -210,14 +237,11 @@
 		4D644142165989C400E17540 /* MGTimelineManager */ = {
 			isa = PBXGroup;
 			children = (
-				4D644146165989C400E17540 /* MGTimelineManager.h */,
-				4D644147165989C400E17540 /* MGTimelineManager.m */,
+				4D644146165989C400E17540 /* MGTimelineController.h */,
+				4D644147165989C400E17540 /* MGTimelineController.m */,
 				4D644148165989C400E17540 /* MGTimelineParser.h */,
 				4D644149165989C400E17540 /* MGTimelineParser.m */,
-				4D64414A165989C400E17540 /* MGTweetItem.h */,
-				4D64414B165989C400E17540 /* MGTweetItem.m */,
-				4D9EE7E21662FBAA003799EA /* MGTimelineSaveUtil.h */,
-				4D9EE7E31662FBAA003799EA /* MGTimelineSaveUtil.m */,
+				4D9BF418167E398400EB08FB /* Model */,
 				4D644143165989C400E17540 /* Categories */,
 				4D64414C165989C400E17540 /* Vendor */,
 			);
@@ -228,10 +252,10 @@
 		4D644143165989C400E17540 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4DFD9968165C9883002CC155 /* NSArray+Search.h */,
-				4DFD9969165C9883002CC155 /* NSArray+Search.m */,
 				4D644144165989C400E17540 /* AFJSONRequestOperation+Twitter.h */,
 				4D644145165989C400E17540 /* AFJSONRequestOperation+Twitter.m */,
+				4D9BF422167E3F9F00EB08FB /* NSDate+Convert.h */,
+				4D9BF423167E3F9F00EB08FB /* NSDate+Convert.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -327,6 +351,18 @@
 				4D644184165989C400E17540 /* SBJsonWriter.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		4D9BF418167E398400EB08FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4D9BF419167E399100EB08FB /* MGTimlineManagerModel.xcdatamodeld */,
+				4D9BF41F167E3DE300EB08FB /* MGTweetItem.h */,
+				4D9BF420167E3DE300EB08FB /* MGTweetItem.m */,
+				4D9BF41C167E3DDC00EB08FB /* MGProfilePicture.h */,
+				4D9BF41D167E3DDC00EB08FB /* MGProfilePicture.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4D9EE7E61662FD22003799EA /* Controllers */ = {
@@ -437,9 +473,8 @@
 				4D643F6F16596A1200E17540 /* MGAppDelegate.m in Sources */,
 				4D643F7816596A1200E17540 /* MGViewController.m in Sources */,
 				4D644188165989C400E17540 /* AFJSONRequestOperation+Twitter.m in Sources */,
-				4D644189165989C400E17540 /* MGTimelineManager.m in Sources */,
+				4D644189165989C400E17540 /* MGTimelineController.m in Sources */,
 				4D64418A165989C400E17540 /* MGTimelineParser.m in Sources */,
-				4D64418B165989C400E17540 /* MGTweetItem.m in Sources */,
 				4D64418D165989C400E17540 /* AFHTTPClient.m in Sources */,
 				4D64418E165989C400E17540 /* AFHTTPRequestOperation.m in Sources */,
 				4D64418F165989C400E17540 /* AFImageRequestOperation.m in Sources */,
@@ -462,10 +497,13 @@
 				4D6441A4165989C400E17540 /* SBJsonTokeniser.m in Sources */,
 				4D6441A5165989C400E17540 /* SBJsonUTF8Stream.m in Sources */,
 				4D6441A6165989C400E17540 /* SBJsonWriter.m in Sources */,
-				4DFD996A165C9883002CC155 /* NSArray+Search.m in Sources */,
-				4D9EE7E41662FBAA003799EA /* MGTimelineSaveUtil.m in Sources */,
 				4D9EE7EB1662FD56003799EA /* MGTweetCell.m in Sources */,
 				4D9EE7EF1662FDC9003799EA /* NSDate+Readable.m in Sources */,
+				4D9BF41B167E399100EB08FB /* MGTimlineManagerModel.xcdatamodeld in Sources */,
+				4D9BF41E167E3DDC00EB08FB /* MGProfilePicture.m in Sources */,
+				4D9BF421167E3DE300EB08FB /* MGTweetItem.m in Sources */,
+				4D9BF424167E3F9F00EB08FB /* NSDate+Convert.m in Sources */,
+				4D5D30871682D6B200223300 /* AsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +627,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4D9BF419167E399100EB08FB /* MGTimlineManagerModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4D9BF41A167E399100EB08FB /* MGTimlineManagerModel.xcdatamodel */,
+			);
+			currentVersion = 4D9BF41A167E399100EB08FB /* MGTimlineManagerModel.xcdatamodel */;
+			path = MGTimlineManagerModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4D643F5116596A1200E17540 /* Project object */;
 }

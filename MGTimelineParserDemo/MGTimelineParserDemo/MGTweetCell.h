@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class MGTweetItem;
+@class MGTweetItem, AsyncImageView;
 
 @interface MGTweetCell : UITableViewCell
 
@@ -17,7 +17,7 @@
 @property (nonatomic,readonly) IBOutlet UILabel *titleLabel;
 @property (nonatomic,readonly) IBOutlet UILabel *bodyLabel;
 @property (nonatomic,readonly) IBOutlet UILabel *dateLabel;
-@property (nonatomic,readonly) IBOutlet UIImageView *profileImageView;
+@property (nonatomic,readonly) IBOutlet AsyncImageView *profileImageView;
 
 //the cells resized height
 @property (nonatomic, readonly) int height;

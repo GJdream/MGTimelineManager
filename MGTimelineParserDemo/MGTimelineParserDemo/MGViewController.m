@@ -9,14 +9,10 @@
 #import "MGViewController.h"
 #import "MGTweetItem.h"
 #import "MGTweetCell.h"
+#import "MGProfilePicture.h"
+#import "AsyncImageView.h"
 
-@interface MGViewController ()
-{
-    IBOutlet UITableView *tableView;
-    
-    MGTimelineManager *timelineManager;
-    int amountNewTweets;
-    
+@interface MGViewController () {
     dispatch_queue_t feedFetchQueue;
 }
 
@@ -36,33 +32,25 @@
     
     feedFetchQueue = dispatch_queue_create("com.mglagola.HFHS.FeedFetchQueue", NULL);
     
-    //twitter ids are more stable b/c twitter usernames can change, ids cannot
-    //head to http://www.idfromuser.com/ to lookup twitter IDs!
-    timelineManager = [[MGTimelineManager alloc] initWithTwitterIDs:[self twitterIDs]];
-    timelineManager.delegate = self;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"MGTweetItem" inManagedObjectContext:self.timelineManagedObjectContext];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"dateCreated" ascending:YES]];
+    request.predicate = nil;//[NSPredicate predicateWithFormat:@"userID IN %@",self.twitterIDs];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.timelineManagedObjectContext sectionNameKeyPath:nil cacheName:@"MGTweetItemCache"];
+    self.fetchedResultsController.delegate = self;
     
-    //load saved timelines on startup so we don't have to fetch data
-    if ([MGTimelineSaveUtil amountOfTimelinesSavedForTwitterIDs:[self twitterIDs]] > 0) {
-        [self loadSavedTimelines];
-    }else {
-        //no saved timelines - load from twitter
-        [self refreshButtonPressed:nil];
-    }
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+    NSLog(@"Error - %@", [error userInfo]);
     
-}
-
-- (void) loadSavedTimelines
-{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    amountNewTweets = 0;
-    [timelineManager loadSavedTimelinesForTwitterIDs:[self twitterIDs]];
+    [self fetchTimelines];
 }
 
 - (IBAction)refreshButtonPressed:(id)sender
 {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    amountNewTweets = 0;
-    [timelineManager fetchTimelines];
+    dispatch_async(feedFetchQueue, ^{
+        [self fetchTimelines];
+    });
 }
 
 #pragma mark - TableView delegate Methods
@@ -73,53 +61,26 @@
     MGTweetCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[MGTweetCell alloc] initWithNib];
+        cell.profileImageView.showActivityIndicator = NO;
+        cell.profileImageView.crossfadeImages = NO;
     }
     
-    MGTweetItem *item = [timelineManager.tweets objectAtIndex:indexPath.row];
+    MGTweetItem *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.tweetItem = item;
-    cell.profileImageView.image = [timelineManager.profilePictures objectForKey:item.userID];
+    NSLog(@"Path: %@", item.profilePicture.path);
+    cell.profileImageView.imageURL = [NSURL URLWithString:item.profilePicture.path];
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (NSInteger)tableView:(UITableView *)_tableView numberOfRowsInSection:(NSInteger)section {
-    return [timelineManager.tweets count];
 }
 
 - (CGFloat)tableView:(UITableView *)_tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	// probably slower loading new cell but flexable
     MGTweetCell *tempCell = ((MGTweetCell *)[self tableView:_tableView cellForRowAtIndexPath:indexPath]);
-    tempCell.tweetItem = [timelineManager.tweets objectAtIndex:indexPath.row];
+    tempCell.tweetItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
     return tempCell.height;
 }
 
-#pragma mark - MGTimelineManagerDelegate methods
-
-- (void) timelineManagerLoadedNewTweets:(NSArray *)newTweets forTwitterID:(NSString *)twitterID {
-    amountNewTweets += newTweets.count;
-}
-
-- (void) timelineManagerLoadedNewTimelines:(NSDictionary *)timelines {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    NSMutableArray *newTweetsIndexes = [NSMutableArray array];
-    for (int i = 0; i < amountNewTweets; i ++) {
-        NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-        [newTweetsIndexes addObject:path];
-    }
-    [tableView insertRowsAtIndexPaths:newTweetsIndexes withRowAnimation:UITableViewRowAnimationFade];
-}
-
-//save raw json timelines using MGTimelineSaveUtil
-//good for loading saved timelines on starup for example (see viewDidLoad)
-- (void) timelineManagerLoadedJSONTimeline:(NSArray*)jsonTimeline forTwitterID:(NSString*)twitterID {
-    [MGTimelineSaveUtil saveTimeline:jsonTimeline forTwitterID:twitterID];
-}
-
-- (void) timelineManagerConnectionError:(MGTimelineManager *)timelineManager
+- (void) timelineConnectionError
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Could not connect to twitter" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];

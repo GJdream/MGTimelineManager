@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MGTimelineManager.h"
+#import "MGTimelineController.h"
 
-@interface MGViewController : UIViewController <MGTimelineManagerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MGViewController : MGTimelineController <UITableViewDelegate>
 
 @end
