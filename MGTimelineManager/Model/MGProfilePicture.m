@@ -27,7 +27,7 @@
     MGProfilePicture *profilePicture = [[context executeFetchRequest:request error:&error] lastObject];
     
     if (!error && !profilePicture) {
-        MGProfilePicture *profilePicture = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
+        profilePicture = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
         profilePicture.path = path;
     }
     
