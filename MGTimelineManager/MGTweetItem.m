@@ -10,16 +10,23 @@
 
 @implementation MGTweetItem
 
-@synthesize dateCreated = _dateCreated, data = _data, profileImage = _profileImage, username = _username, bodyText = _bodyText, tweetID = _tweetID, userID = _userID;
+@synthesize dateCreated = _dateCreated, data = _data, profileImage = _profileImage, username = _username, bodyText = _bodyText, tweetID = _tweetID, userID = _userID, profileImageURL = _profileImageURL;
 
 - (UIImage*) profileImage
 {
     if (_profileImage == nil) {
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [self.data valueForKeyPath:@"user.profile_image_url"]]];
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.profileImageURL]];
         _profileImage = [UIImage imageWithData:imageData];
     }
     return _profileImage;
 }
+
+- (NSString*) profileImageURL {
+    if (_profileImageURL == nil)
+        _profileImage = [self.data valueForKeyPath:@"user.profile_image_url"];
+    return _profileImageURL;
+}
+
 
 - (NSString*) username
 {
