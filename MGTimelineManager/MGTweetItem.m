@@ -23,7 +23,7 @@
 
 - (NSString*) profileImageURL {
     if (_profileImageURL == nil)
-        _profileImage = [self.data valueForKeyPath:@"user.profile_image_url"];
+        _profileImageURL = [self.data valueForKeyPath:@"user.profile_image_url"];
     return _profileImageURL;
 }
 
