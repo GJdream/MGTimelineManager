@@ -1,4 +1,4 @@
-#No Longer Maintained (as of now)
+#No Longer Maintained
 
 # MGTimelineManager
 - MGTimelineManager is a simple twitter timeline manager for iOS.
