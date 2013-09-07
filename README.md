@@ -1,3 +1,8 @@
+##Util No Longer Maintained
+Will be accepting pull request if any.
+A good alternative is [STTwitter](https://github.com/nst/STTwitter)
+
+
 # MGTimelineManager
 - MGTimelineManager is a simple twitter timeline manager for iOS.
 
@@ -72,7 +77,3 @@ You can also load up saved timelines from the MGTimelineSaveUtil if you have any
 ### Other
 - Check out the demo!
 - Let me know if you use MGTimelineManager in your app!
-
-##Util No Longer Maintained
-Will be accepting pull request if any.
-
